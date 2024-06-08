@@ -1,9 +1,13 @@
 package com.spring.gym.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -23,13 +27,17 @@ public class Customer {
 	String telefonNumber;
 	String address;
 	
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Fee> fees;
+	
 	public Customer() {
 		
 	}
 	
+
 	public Customer(Integer idCustomer, @NotBlank(message = "add name") String name,
 			@NotBlank(message = "add last name") String lastName, @NotBlank(message = "add DNI") String dni,
-			@NotBlank(message = "add telefon number") String telefonNumber, String address) {
+			@NotBlank(message = "add telefon number") String telefonNumber, String address, List<Fee> fees) {
 		super();
 		this.idCustomer = idCustomer;
 		this.name = name;
@@ -37,7 +45,19 @@ public class Customer {
 		this.dni = dni;
 		this.telefonNumber = telefonNumber;
 		this.address = address;
+		this.fees = fees;
 	}
+
+
+	public List<Fee> getFees() {
+		return fees;
+	}
+
+
+	public void setFees(List<Fee> fees) {
+		this.fees = fees;
+	}
+
 
 	public Integer getIdCustomer() {
 		return idCustomer;
