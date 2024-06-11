@@ -4,28 +4,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
 import jakarta.persistence.Table;
-import jakarta.persistence.InheritanceType;
 
 @Entity(name="Routine")
 @Table(name="routnes")
-@Inheritance(strategy = InheritanceType.JOINED)/*Herencia*/
 public class Routine {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idRoutine;
-	String description;
+	String day;
 
 	public Routine() {
 		
 	}
 	
-	public Routine(Integer idRoutine, String description) {
+	public Routine(Integer idRoutine, String day) {
 		super();
 		this.idRoutine = idRoutine;
-		this.description = description;
+		this.day = day;
 	}
 
 	public Integer getIdRoutine() {
@@ -36,12 +33,12 @@ public class Routine {
 		this.idRoutine = idRoutine;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDay() {
+		return day;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDay(String day) {
+		this.day = day;
 	}
 
 	
