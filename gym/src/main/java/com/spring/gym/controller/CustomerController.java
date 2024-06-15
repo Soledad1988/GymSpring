@@ -34,10 +34,11 @@ public class CustomerController {
 	   return new ResponseEntity<>(customer, HttpStatus.CREATED);
 	}
 	
-	@GetMapping
-	public List<Customer>listCustomer(){
-		return customerService.listCustomer();
-	}
+    @GetMapping
+    public ResponseEntity<List<Customer>> listCustomer() {
+        List<Customer> customers = customerService.listCustomer();
+        return new ResponseEntity<>(customers, HttpStatus.OK);
+    }
 	
 	@GetMapping("/{idCustomer}")
     public Customer get(@PathVariable("idCustomer") Integer idCustomer){
