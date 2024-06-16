@@ -34,10 +34,11 @@ public class CustomerController {
 	   return new ResponseEntity<>(customer, HttpStatus.CREATED);
 	}
 	
-	@GetMapping
-	public List<Customer>listCustomer(){
-		return customerService.listCustomer();
-	}
+    @GetMapping
+    public ResponseEntity<List<Customer>> listCustomer() {
+        List<Customer> customers = customerService.listCustomer();
+        return new ResponseEntity<>(customers, HttpStatus.OK);
+    }
 	
 	@GetMapping("/{idCustomer}")
     public Customer get(@PathVariable("idCustomer") Integer idCustomer){
@@ -49,9 +50,11 @@ public class CustomerController {
 		customerService.delete(idCustomer);
 	}
   
-	@PutMapping
-	public void update(@RequestBody Customer customer){
-		customerService.update(customer);
-	 }
+	
+	@PutMapping("/{idCustomer}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable Integer idCustomer, @RequestBody Customer customer) {
+	    customerService.update(idCustomer, customer);
+	    return ResponseEntity.ok(customer);
+	}
 	
 }
