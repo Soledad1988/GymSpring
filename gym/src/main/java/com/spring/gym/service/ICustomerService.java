@@ -10,5 +10,5 @@ public interface ICustomerService {
 	    public List<Customer> listCustomer();
 	    public void delete(Integer idCustomer);
 	    public Customer read(Integer idCustomer);
-	    public void update(Customer customer);
+	    public void update(Integer idCustomer, Customer customer);
 }

@@ -50,9 +50,11 @@ public class CustomerController {
 		customerService.delete(idCustomer);
 	}
   
-	@PutMapping
-	public void update(@RequestBody Customer customer){
-		customerService.update(customer);
-	 }
+	
+	@PutMapping("/{idCustomer}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable Integer idCustomer, @RequestBody Customer customer) {
+	    customerService.update(idCustomer, customer);
+	    return ResponseEntity.ok(customer);
+	}
 	
 }
