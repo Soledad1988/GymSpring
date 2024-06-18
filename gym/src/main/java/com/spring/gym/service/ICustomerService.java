@@ -11,4 +11,7 @@ public interface ICustomerService {
 	    public void delete(Integer idCustomer);
 	    public Customer read(Integer idCustomer);
 	    public void update(Integer idCustomer, Customer customer);
+	    
+	 // Métodos de búsqueda
+	    List<Customer> searchCustomers(String name, String lastName);
 }

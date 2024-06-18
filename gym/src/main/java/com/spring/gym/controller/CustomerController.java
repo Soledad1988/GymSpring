@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.gym.model.Customer;
@@ -56,5 +57,11 @@ public class CustomerController {
 	    customerService.update(idCustomer, customer);
 	    return ResponseEntity.ok(customer);
 	}
+	
+	@GetMapping("/search")
+    public List<Customer> searchCustomers(@RequestParam(value = "name", required = false) String name,
+                                          @RequestParam(value = "lastName", required = false) String lastName) {
+        return customerService.searchCustomers(name, lastName);
+    }
 	
 }

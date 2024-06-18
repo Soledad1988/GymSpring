@@ -47,4 +47,17 @@ public class CustomerService implements ICustomerService{
 	            customerRepository.save(existingCustomer);
 	        } 
 	    }
+	  
+	  @Override
+	    public List<Customer> searchCustomers(String name, String lastName) {
+	        if (name != null && lastName != null) {
+	            return customerRepository.findByNameAndLastName(name, lastName);
+	        } else if (name != null) {
+	            return customerRepository.findByName(name);
+	        } else if (lastName != null) {
+	            return customerRepository.findByLastName(lastName);
+	        } else {
+	            return customerRepository.findAll();
+	        }
+	    }
 }
