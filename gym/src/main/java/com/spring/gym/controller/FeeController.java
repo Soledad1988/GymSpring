@@ -37,8 +37,9 @@ public class FeeController {
 	}
 	
 	@PostMapping("/assign/{customerId}")
-	public Fee assignFeeToCustomer(@PathVariable Integer customerId, @RequestBody Fee fee) {
-	    return feeService.assignFeeToCustomer(customerId, fee);
+	public ResponseEntity<Fee> assignFeeToCustomer(@PathVariable Integer customerId, @Valid @RequestBody Fee fee) {
+	    Fee assignedFee = feeService.assignFeeToCustomer(customerId, fee);
+	    return new ResponseEntity<>(assignedFee, HttpStatus.CREATED);
 	}
 
 }
