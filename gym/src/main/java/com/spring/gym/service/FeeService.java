@@ -28,12 +28,14 @@ public class FeeService implements IFeeService{
 	public List<Fee> listFee() {
 		return feeRepository.findAll();
 	}
-	
-	//asigno cuota
-	public Fee assignFeeToCustomer(Integer customerId, Fee fee) {
-	    Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Customer not found"));
-	    fee.setCustomer(customer);
-	    return feeRepository.save(fee);
-	 }
+
+	// Método para asignar cuota a un cliente
+    public Fee assignFeeToCustomer(Integer customerId, Fee fee) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+
+        fee.setCustomer(customer);
+        return feeRepository.save(fee);
+    }
 
 }

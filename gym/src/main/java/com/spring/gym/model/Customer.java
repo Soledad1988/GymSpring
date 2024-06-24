@@ -1,5 +1,6 @@
 package com.spring.gym.model;
 
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -19,6 +20,7 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idCustomer;
+	private Date dateStart;
 	@NotBlank(message="add name")
 	String name;
 	@NotBlank(message="add last name")
@@ -36,13 +38,14 @@ public class Customer {
 	public Customer() {
 		
 	}
-	
 
-	public Customer(Integer idCustomer, @NotBlank(message = "add name") String name,
+
+	public Customer(Integer idCustomer, Date dateStart, @NotBlank(message = "add name") String name,
 			@NotBlank(message = "add last name") String lastName, @NotBlank(message = "add DNI") String dni,
 			@NotBlank(message = "add telefon number") String telefonNumber, String address, List<Fee> fees) {
 		super();
 		this.idCustomer = idCustomer;
+		this.dateStart = dateStart;
 		this.name = name;
 		this.lastName = lastName;
 		this.dni = dni;
@@ -50,13 +53,20 @@ public class Customer {
 		this.address = address;
 		this.fees = fees;
 	}
+	
 
+	public Date getDateStart() {
+		return dateStart;
+	}
+
+	public void setDateStart(Date dateStart) {
+		this.dateStart = dateStart;
+	}
 
 	public List<Fee> getFees() {
 		return fees;
 	}
-
-
+	
 	public void setFees(List<Fee> fees) {
 		this.fees = fees;
 	}
