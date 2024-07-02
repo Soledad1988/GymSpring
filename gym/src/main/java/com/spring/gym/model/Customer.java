@@ -35,11 +35,11 @@ public class Customer {
 	@JsonManagedReference
     private List<Fee> fees;
 	
+	
 	public Customer() {
 		
 	}
-
-
+	
 	public Customer(Integer idCustomer, Date dateStart, @NotBlank(message = "add name") String name,
 			@NotBlank(message = "add last name") String lastName, @NotBlank(message = "add DNI") String dni,
 			@NotBlank(message = "add telefon number") String telefonNumber, String address, List<Fee> fees) {
@@ -53,7 +53,7 @@ public class Customer {
 		this.address = address;
 		this.fees = fees;
 	}
-	
+
 
 	public Date getDateStart() {
 		return dateStart;
@@ -62,6 +62,7 @@ public class Customer {
 	public void setDateStart(Date dateStart) {
 		this.dateStart = dateStart;
 	}
+
 
 	public List<Fee> getFees() {
 		return fees;
