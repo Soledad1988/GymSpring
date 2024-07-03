@@ -9,4 +9,5 @@ public interface IFeeService {
 	public void create(Fee fee);
     public List<Fee> listFee();
     public Fee assignFeeToCustomer(Integer customerId, Fee fee);
+    List<Fee> getFeesByCustomerId(Integer idCustomer);
 }
