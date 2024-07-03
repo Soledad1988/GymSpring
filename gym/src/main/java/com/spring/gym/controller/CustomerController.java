@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.gym.model.Customer;
+import com.spring.gym.model.Fee;
 import com.spring.gym.service.CustomerService;
+import com.spring.gym.service.FeeService;
 
 import jakarta.validation.Valid;
 
@@ -28,6 +30,9 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+    private FeeService feeService;
 	
     @PostMapping
 	public ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer) {
@@ -62,6 +67,16 @@ public class CustomerController {
     public List<Customer> searchCustomers(@RequestParam(value = "name", required = false) String name,
                                           @RequestParam(value = "lastName", required = false) String lastName) {
         return customerService.searchCustomers(name, lastName);
+    }
+	
+	@GetMapping("/details")
+    public ResponseEntity<List<Customer>> getCustomerDetails() {
+        List<Customer> customers = customerService.listCustomer();
+        for (Customer customer : customers) {
+            List<Fee> fees = feeService.getFeesByCustomerId(customer.getIdCustomer());
+            customer.setFees(fees);
+        }
+        return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 	
 }
