@@ -35,7 +35,7 @@ public class RoutineController {
 	
 	@GetMapping
 	public List<Routine>listRoutine(){
-		return routineService.listRotine();
+		return routineService.listRoutine();
 	}
 	
 	@GetMapping("/{idRoutine}")

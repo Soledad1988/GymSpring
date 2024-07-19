@@ -13,56 +13,92 @@ import jakarta.persistence.Table;
 @Entity(name="Routine")
 @Table(name="routines")
 public class Routine {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer idRoutine;
-	String description;
-	
-	@ManyToOne
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer idRoutine;
+    
+    String description;
+    String dayOfWeek;  // Día de la semana, e.g., "Monday"
+    String exerciseType;  // Tipo de ejercicio, e.g., "Cardio", "Strength Training"
+    int duration;  // Duración en minutos
+    int intensityLevel;  // Nivel de intensidad, e.g., 1-5
+    
+    @ManyToOne
     @JoinColumn(name = "category_id")
-	@JsonBackReference
+    @JsonBackReference
     private Category category;
-	
+    
+    // Constructores
+    public Routine() {
+        
+    }
 
-	public Routine() {
-		
-	}
+    public Routine(Integer idRoutine, String description, String dayOfWeek, String exerciseType, int duration, int intensityLevel, Category category) {
+        super();
+        this.idRoutine = idRoutine;
+        this.description = description;
+        this.dayOfWeek = dayOfWeek;
+        this.exerciseType = exerciseType;
+        this.duration = duration;
+        this.intensityLevel = intensityLevel;
+        this.category = category;
+    }
+    
+    // Getters y Setters
+    public Integer getIdRoutine() {
+        return idRoutine;
+    }
 
+    public void setIdRoutine(Integer idRoutine) {
+        this.idRoutine = idRoutine;
+    }
 
-	public Routine(Integer idRoutine, String description, Category category) {
-		super();
-		this.idRoutine = idRoutine;
-		this.description = description;
-		this.category = category;
-	}
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Category getCategory() {
-		return category;
-	}
+    public String getDayOfWeek() {
+        return dayOfWeek;
+    }
 
+    public void setDayOfWeek(String dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+    public String getExerciseType() {
+        return exerciseType;
+    }
 
+    public void setExerciseType(String exerciseType) {
+        this.exerciseType = exerciseType;
+    }
 
-	public Integer getIdRoutine() {
-		return idRoutine;
-	}
+    public int getDuration() {
+        return duration;
+    }
 
-	public void setIdRoutine(Integer idRoutine) {
-		this.idRoutine = idRoutine;
-	}
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public int getIntensityLevel() {
+        return intensityLevel;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setIntensityLevel(int intensityLevel) {
+        this.intensityLevel = intensityLevel;
+    }
 
-	
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
