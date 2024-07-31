@@ -18,7 +18,6 @@ public class Routine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idRoutine;
     
-    String description;
     String dayOfWeek;  // Día de la semana, e.g., "Monday"
     String exerciseType;  // Tipo de ejercicio, e.g., "Cardio", "Strength Training"
     int duration;  // Duración en minutos
@@ -34,10 +33,9 @@ public class Routine {
         
     }
 
-    public Routine(Integer idRoutine, String description, String dayOfWeek, String exerciseType, int duration, int intensityLevel, Category category) {
+    public Routine(Integer idRoutine, String dayOfWeek, String exerciseType, int duration, int intensityLevel, Category category) {
         super();
         this.idRoutine = idRoutine;
-        this.description = description;
         this.dayOfWeek = dayOfWeek;
         this.exerciseType = exerciseType;
         this.duration = duration;
@@ -54,13 +52,6 @@ public class Routine {
         this.idRoutine = idRoutine;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getDayOfWeek() {
         return dayOfWeek;
