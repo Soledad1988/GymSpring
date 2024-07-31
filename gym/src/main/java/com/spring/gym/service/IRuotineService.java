@@ -12,4 +12,6 @@ public interface IRuotineService {
 	    public void delete(Integer idRoutine);
 	    public Routine read(Integer idRoutine);
 	    public void update(Routine routine);
+	    public Routine assignCategoryToRoutine(Integer idCategory, Routine routine);
+	    List<Routine> getRoutinesByCategoryId(Integer idCategory);
 }
