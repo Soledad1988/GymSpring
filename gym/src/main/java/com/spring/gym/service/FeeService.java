@@ -37,5 +37,10 @@ public class FeeService implements IFeeService{
         fee.setCustomer(customer);
         return feeRepository.save(fee);
     }
+    
+    @Override
+    public List<Fee> getFeesByCustomerId(Integer idCustomer) {
+        return feeRepository.findByCustomerIdCustomer(idCustomer);
+    }
 
 }
